@@ -3,11 +3,13 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table">
+<a href="{{ route('countries.create') }}" class="btn btn-outline-dark mt-5">Add</a>
+<table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Name</th>      
+      <th scope="col">Name</th>
+      <th>Actions</th>      
     </tr>
   </thead>
   <tbody>
@@ -15,6 +17,10 @@
     <tr>
         <td>{{ $country->id }}</td>
         <td>{{ $country->name }}</td>
+        <td>
+          <a class="btn btn-outline-dark" href="{{ route('countries.show' , ['country' => $country->id]) }}" role="button">Details</a>
+          <a class="btn btn-outline-dark" href="{{ route('countries.edit' , ['country' => $country->id]) }}" role="button">Edit</a>
+        </td>
     @endforeach 
    
   </tbody>
