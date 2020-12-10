@@ -23,31 +23,31 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/pets">Pets</a>
+        <a class="nav-link" href="{{ route('pets.index') }}">Pets</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/users">Users</a>
+        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/countries">Countries</a>
+        <a class="nav-link" href="{{ route('countries.index') }}">Countries</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/calendars">Calendars</a>
+        <a class="nav-link" href="{{ route('calendars.index') }}">Calendars</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/pet_types">Pet Types</a>
+        <a class="nav-link" href="{{ route('pet_types.index') }}">Pet Types</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/medical_conditions">Medical Conditions</a>
+        <a class="nav-link" href="{{ route('medical_conditions.index') }}">Medical Conditions</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/veterinarian_visits">Veterinarian Visits</a>
+        <a class="nav-link" href="{{ route('veterinarian_visits.index') }}">Veterinarian Visits</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/allergies">Allergies</a>
+        <a class="nav-link" href="{{ route('allergies.index') }}">Allergies</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/images">Images</a>
+        <a class="nav-link" href="{{ route('images.index') }}">Images</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
