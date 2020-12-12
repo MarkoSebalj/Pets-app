@@ -19,17 +19,17 @@ class VeterinarianVisitSeeder extends Seeder
         DB::table('veterinarian_visits')->insert([
             ['name' => Str::random(10),
             'price' => '105',
-            'note' => Str::random(200),
+            'note' => Str::random(50),
             'appointment_at' => Carbon::tomorrow(),],
 
             ['name' => Str::random(10),
             'price' => '110',
-            'note' => Str::random(200),
+            'note' => Str::random(50),
             'appointment_at' => Carbon::tomorrow(),],
 
             ['name' => Str::random(10),
             'price' => '104',
-            'note' => Str::random(200),
+            'note' => Str::random(50),
             'appointment_at' => Carbon::tomorrow(),]
 
             ]); 

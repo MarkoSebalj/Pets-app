@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table">
+<a href="{{ route('pet_types.create') }}" class="btn btn-outline-dark mt-5">Add</a>
+<div class="container">
+<table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>      
+      <th scope="col">Name</th> 
+      <th>Actions</th>     
+     
     </tr>
   </thead>
   <tbody>
@@ -13,6 +17,10 @@
     <tr>
         <td>{{ $pet_type->id }}</td>
         <td>{{ $pet_type->name }}</td>
+        <td>
+          <a class="btn btn-outline-dark" href="{{ route('pet_types.show' , ['pet_type' => $pet_type->id]) }}" role="button">Details</a>
+          <a class="btn btn-outline-dark" href="{{ route('pet_types.edit' , ['pet_type' => $pet_type->id]) }}" role="button">Edit</a>
+        </td>
     @endforeach 
    
   </tbody>

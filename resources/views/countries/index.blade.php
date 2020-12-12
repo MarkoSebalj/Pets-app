@@ -4,6 +4,8 @@
 
 @section('content')
 <a href="{{ route('countries.create') }}" class="btn btn-outline-dark mt-5">Add</a>
+<div class="container">
+
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>

@@ -50,7 +50,8 @@ class PetController extends Controller
     {
         
         $pet = Pet::find($id);
-        dd($pet);
+        return view('pets.show', compact('pet'));
+        
     }
 
     /**

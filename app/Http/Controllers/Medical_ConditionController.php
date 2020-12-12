@@ -48,7 +48,7 @@ class Medical_ConditionController extends Controller
     public function show($id)
     {
         $medical_condition = Medical_Condition::find($id);
-        dd($medical_condition);
+        return view('medical_conditions.show', compact('medical_condition'));
     }
 
     /**

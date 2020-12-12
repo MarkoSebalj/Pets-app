@@ -48,7 +48,7 @@ class Pet_TypeController extends Controller
     public function show($id)
     {
         $pet_type = Pet_Type::find($id);
-        dd($pet_type);
+        return view('pet_types.show', compact('pet_type'));
     }
 
     /**

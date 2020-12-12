@@ -48,7 +48,7 @@ class AllergyController extends Controller
     public function show($id)
     {
         $allergy = Allergy::find($id);
-        dd($allergy);
+        return view('allergies.show', compact('allergy'));
     }
 
     /**

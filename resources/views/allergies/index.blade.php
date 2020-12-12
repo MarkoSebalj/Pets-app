@@ -3,9 +3,11 @@
 
 
 @section('content')
+<a href="{{ route('allergies.create') }}" class="btn btn-outline-dark mt-5">Add</a>
+
 <div class="container">
 
-<table class="table">
+<table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
@@ -25,8 +27,8 @@
         <td>{{ $allergy->note }}</td>
         <td>{{ $allergy->diagnosed_at }}</td>
         <td>          
-          <a class="btn btn-dark" href="{{ route('allergies.show' , ['allergy' => $allergy->id]) }}" role="button">Details</a>
-          <a class="btn btn-dark" href="{{ route('allergies.edit' , ['allergy' => $allergy->id]) }}" role="button">Edit</a>
+          <a class="btn btn-outline-dark" href="{{ route('allergies.show' , ['allergy' => $allergy->id]) }}" role="button">Details</a>
+          <a class="btn btn-outline-dark" href="{{ route('allergies.edit' , ['allergy' => $allergy->id]) }}" role="button">Edit</a>
         </td>
       </tr>
     @endforeach

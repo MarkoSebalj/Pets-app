@@ -5,6 +5,7 @@
 
 
 @section('content')
+<a href="{{ route('users.create') }}" class="btn btn-outline-dark mt-5">Add</a>
 <div class="container">
 
 <table class="table">
@@ -15,7 +16,8 @@
       <th scope="col">Last Name</th> 
       <th scope="col">Password</th>
       <th scope="col">Email</th>   
-      <th scope="col">Country</th>   
+      <th scope="col">Country</th>
+      <th>Actions</th>   
     </tr>
   </thead>
   <tbody>
@@ -27,6 +29,10 @@
         <td>{{ $user->password }}</td>
         <td>{{ $user->email }}</td>
         <td>{{ $user->country_id }}</td>
+        <td>
+          <a class="btn btn-outline-dark" href="{{ route('users.show' , ['user' => $user->id]) }}" role="button">Details</a>
+          <a class="btn btn-outline-dark" href="{{ route('users.edit' , ['user' => $user->id]) }}" role="button">Edit</a>
+        </td>
     @endforeach 
    
   </tbody>

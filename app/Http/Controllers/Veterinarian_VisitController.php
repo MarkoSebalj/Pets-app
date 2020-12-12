@@ -48,7 +48,7 @@ class Veterinarian_VisitController extends Controller
     public function show($id)
     {
         $veterinarian_visit = Veterinarian_Visit::find($id);
-        dd($veterinarian_visit);
+        return view('veterinarian_visits.show', compact('veterinarian_visit'));
         
     }
 
