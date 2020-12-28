@@ -14,8 +14,12 @@ class PetController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         
         $pets = Pet::with(['medical_condition'])->paginate();
+=======
+        $pets = Pet::paginate();
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         return view('pets.index', compact('pets'));
         
     }
@@ -51,10 +55,14 @@ class PetController extends Controller
     {
         
         $pet = Pet::find($id);
+<<<<<<< HEAD
         $visitation = $pet->visits()->paginate();
         return view('pets.show', compact('pet', 'visitation'));        
           
       
+=======
+        return view('pets.show', compact('pet'));
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         
     }
 

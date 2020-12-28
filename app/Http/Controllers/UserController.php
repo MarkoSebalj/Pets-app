@@ -14,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $users = User::with(['country'])->paginate();
+=======
+        $users = User::paginate();
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         return view('users.index', compact('users')); 
     }
 
@@ -47,8 +51,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
         $user = User::with(['country'])
             ->findOrFail($id);
+=======
+        $user = User::find($id);
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         return view('users.show', compact('user'));
     }
 

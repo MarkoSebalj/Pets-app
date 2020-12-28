@@ -16,7 +16,10 @@
       <th scope="col">Gender</th> 
       <th scope="col">Breed</th>
       <th scope="col">Born At</th>
+<<<<<<< HEAD
       <th scope="col">Medical Condition</th>
+=======
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
       <th>Actions</th>     
     </tr>
   </thead>
@@ -28,7 +31,10 @@
         <td>{{ $pet->gender }}</td>
         <td>{{ $pet->breed }}</td>
         <td>{{ $pet->born_at }}</td>
+<<<<<<< HEAD
         <td>{{ $pet->medical_condition->name }}</td>
+=======
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         <td>
           <a class="btn btn-outline-dark" href="{{ route('pets.show' , ['pet' => $pet->id]) }}" role="button">Details</a>
           <a class="btn btn-outline-dark" href="{{ route('pets.edit' , ['pet' => $pet->id]) }}" role="button">Edit</a>

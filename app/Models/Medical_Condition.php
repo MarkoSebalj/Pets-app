@@ -16,6 +16,7 @@ class Medical_Condition extends Model
     protected $fillable = [
         'name', 
         'severity',
+<<<<<<< HEAD
         'note',
         'diagnosed_at'
     ];
@@ -27,4 +28,9 @@ class Medical_Condition extends Model
 
        
     }
+=======
+         'note',
+          'diagnosed_at'
+    ];
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
 }
