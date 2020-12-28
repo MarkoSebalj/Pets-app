@@ -14,12 +14,8 @@ class PetController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         
         $pets = Pet::with(['medical_condition'])->paginate();
-=======
-        $pets = Pet::paginate();
->>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
         return view('pets.index', compact('pets'));
         
     }
