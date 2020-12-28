@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+<<<<<<< HEAD
         'name', 'email', 'password', 'country_id'
+=======
+        'name', 'email', 'password',
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
     ];
 
     /**
@@ -36,8 +40,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
 
     public function country() { return $this->belongsTo(Country::class); }
 
 
+=======
+>>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
 }
