@@ -16,7 +16,6 @@ class Pet extends Model
     protected $fillable = [
         'name', 'gender', 'born_at', 'breed'
     ];
-<<<<<<< HEAD
 
     public function images() 
         { 
@@ -37,6 +36,4 @@ class Pet extends Model
 
         }
 
-=======
->>>>>>> 4017ae9f955567bc504ff91a2ad6eaf16c9b5629
 }

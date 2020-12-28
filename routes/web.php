@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::resource('countries', CountryController::class);
 Route::resource('users', UserController::class);
+Route::resource('images', ImageController::class);
 Route::resource('allergies', AllergyController::class);
 Route::resource('calendars', CalendarController::class);
-Route::resource('images', ImageController::class);
 Route::resource('medical_conditions', Medical_ConditionController::class);
 Route::resource('pet_types', Pet_TypeController::class);
 Route::resource('pets', PetController::class);
