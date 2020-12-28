@@ -23,7 +23,7 @@ class Medical_Condition extends Model
     public function pets() 
     { 
         
-        return $this->hasMany(Pet::class); 
+        return $this->hasMany(Pet::class);
 
        
     }

@@ -32,7 +32,7 @@ class Pet extends Model
         public function medical_conditions() 
         {
 
-            return $this->belongsTo(  Pet::class);
+            return $this->belongsTo(Medical_Condition::class); 
 
         }
 
