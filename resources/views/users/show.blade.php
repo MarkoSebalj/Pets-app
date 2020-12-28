@@ -6,11 +6,10 @@
 <div>
 <h3>User Detail</h3>
 <ul class="list-unstyled">
-<li>Name {{ $user->first_name }}</li>
-<li>Gender {{ $user->last_name }}</li>
-<li>Breed {{ $user->password }}</li>
-<li>Born at {{ $user->email }}</li>
-<li>Country {{ $user->country_id }}</li>
+<li>First Name: {{ $user->first_name }}</li>
+<li>Last Name: {{ $user->last_name }}</li>
+<li>Email: {{ $user->email }}</li>
+<li>Country: {{ $user->country->name }}</li>
 </ul>
 
 <a href="{{ url()->previous() }}" class="btn btn-outline-dark">Back</a>
