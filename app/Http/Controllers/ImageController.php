@@ -14,7 +14,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::paginate();
+        $images = Image::with(['pet'])->paginate();
         return view('images.index', compact('images'));
     }
 

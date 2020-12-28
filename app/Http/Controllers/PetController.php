@@ -14,7 +14,8 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::paginate();
+        
+        $pets = Pet::with(['medical_condition'])->paginate();
         return view('pets.index', compact('pets'));
         
     }
@@ -50,7 +51,10 @@ class PetController extends Controller
     {
         
         $pet = Pet::find($id);
-        return view('pets.show', compact('pet'));
+        $visitation = $pet->visits()->paginate();
+        return view('pets.show', compact('pet', 'visitation'));        
+          
+      
         
     }
 

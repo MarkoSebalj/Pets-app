@@ -16,4 +16,9 @@ class Image extends Model
     protected $fillable = [
         'image_path', 'added_at', 'description',
     ];
+
+    public function pet() 
+    { 
+        return $this->belongsTo(Pet::class);
+    }
 }

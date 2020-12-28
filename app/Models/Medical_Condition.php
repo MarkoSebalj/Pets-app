@@ -16,7 +16,15 @@ class Medical_Condition extends Model
     protected $fillable = [
         'name', 
         'severity',
-         'note',
-          'diagnosed_at'
+        'note',
+        'diagnosed_at'
     ];
+
+    public function pets() 
+    { 
+        
+        return $this->hasMany(Pet::class); 
+
+       
+    }
 }

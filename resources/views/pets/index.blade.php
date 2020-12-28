@@ -16,6 +16,7 @@
       <th scope="col">Gender</th> 
       <th scope="col">Breed</th>
       <th scope="col">Born At</th>
+      <th scope="col">Medical Condition</th>
       <th>Actions</th>     
     </tr>
   </thead>
@@ -27,6 +28,7 @@
         <td>{{ $pet->gender }}</td>
         <td>{{ $pet->breed }}</td>
         <td>{{ $pet->born_at }}</td>
+        <td>{{ $pet->medical_condition->name }}</td>
         <td>
           <a class="btn btn-outline-dark" href="{{ route('pets.show' , ['pet' => $pet->id]) }}" role="button">Details</a>
           <a class="btn btn-outline-dark" href="{{ route('pets.edit' , ['pet' => $pet->id]) }}" role="button">Edit</a>
