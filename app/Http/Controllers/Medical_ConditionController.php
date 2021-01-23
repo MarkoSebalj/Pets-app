@@ -25,7 +25,7 @@ class Medical_ConditionController extends Controller
      */
     public function create()
     {
-        //
+        return view('medical_conditions.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class Medical_ConditionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:medical_conditions|max:255',
+            'severity' => 'required|unique:medical_conditions|max:255',
+            'note' => 'required|unique:medical_conditions|max:255',
+            'diagnosed_at' => 'required|unique:medical_conditions|'
+            
+            
+        ]);
+        $medical_condition = Medical_condition::create($validated);
+        return view('medical_conditions.show', compact('medical_condition'));
     }
 
     /**
@@ -59,7 +68,8 @@ class Medical_ConditionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medical_condition = Medical_Condition::findOrFail($id);
+        return view('medical_conditions.edit', compact('medical_condition'));
     }
 
     /**
@@ -71,7 +81,21 @@ class Medical_ConditionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:medical_conditions|max:255',
+            'severity' => 'required|unique:medical_conditions|max:255',
+            'note' => 'required|unique:medical_conditions|max:255',
+            'diagnosed_at' => 'required|unique:medical_conditions|'
+           
+            
+            
+        ]);
+
+        $medical_condition = Medical_Condition::findOrFail($id);
+        $medical_condition->fill($validated);
+        $medical_condition->save();
+
+        return view('medical_conditions.show', compact('medical_condition'));
     }
 
     /**
@@ -82,6 +106,9 @@ class Medical_ConditionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Medical_Condition::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('medical_conditions.index');
     }
 }

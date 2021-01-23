@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pet;
-use App\Models\Medical_Condition; 
+use App\Models\Medical_Condition;
+use App\Models\User;
+use App\Models\Pet_Type;
+
 
 class PetController extends Controller
 {
@@ -16,7 +19,7 @@ class PetController extends Controller
     public function index()
     {
         
-        $pets = Pet::with(['medical_condition'])->paginate();
+        $pets = Pet::with(['medical_condition', 'user', 'pet_type'])->paginate();
         return view('pets.index', compact('pets'));
         
     }
@@ -40,11 +43,14 @@ class PetController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:images|max:255',
-            'gender' => 'required|unique:images|',
-            'breed' => 'required|unique:images|max:255',
-            'born_at' => 'required|unique:images|',
-            'medical_condition_id' => ' '
+            'name' => 'required|unique:pets|max:255',
+            'gender' => 'required|unique:pets|',
+            'breed' => 'required|unique:pets|max:255',
+            'born_at' => 'required|unique:pets|',
+            'medical_condition_id' => 'required',
+            'user_id' => 'required',
+            'pets_type_id' => 'required',
+            
             
         ]);
         $pet = Pet::create($validated);
@@ -94,11 +100,13 @@ class PetController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:images|max:255',
-            'gender' => 'required|unique:images|',
-            'breed' => 'required|unique:images|max:255',
-            'born_at' => 'required|unique:images|',
-            'medical_condition_id' => ' '
+            'name' => 'required|unique:pets|max:255',
+            'gender' => 'required|unique:pets|',
+            'breed' => 'required|unique:pets|max:255',
+            'born_at' => 'required|unique:pets|',
+            'medical_condition_id' => 'required',
+            'user_id' => 'required',
+            'pets_type_id' => 'required',
 
             ]);
 

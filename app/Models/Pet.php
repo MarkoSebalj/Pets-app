@@ -41,4 +41,18 @@ class Pet extends Model
         return $this->belongsTo(Allergy::class); 
     }
 
+    public function user()
+
+    {
+        return $this->belongsTo(User::class); 
+    }
+
+    public function pet_type()
+
+    {
+        return $this->belongsTo(Pet_Type::class); 
+    }
+
+
+
 }
