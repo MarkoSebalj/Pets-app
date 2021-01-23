@@ -25,7 +25,7 @@ class Pet_TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pet_types.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class Pet_TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:pet_types|max:255'
+            
+            
+        ]);
+        $pet_type = Pet_Type::create($validated);
+        return view('pet_types.show', compact('pet_type'));
     }
 
     /**
@@ -59,7 +65,8 @@ class Pet_TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pet_type = Pet_Type::findOrFail($id);
+        return view('pet_types.edit', compact('pet_type'));
     }
 
     /**
@@ -71,7 +78,18 @@ class Pet_TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255'
+           
+            
+            
+        ]);
+
+        $pet_type = Pet_Type::findOrFail($id);
+        $pet_type->fill($validated);
+        $pet_type->save();
+
+        return view('pet_types.show', compact('pet_type'));
     }
 
     /**
@@ -82,6 +100,9 @@ class Pet_TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pet_Type::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('pet_types.index');
     }
 }

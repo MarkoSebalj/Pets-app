@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'country_id'
+        'first_name', 'last_name', 'email', 'password', 'country_id'
     ];
 
     /**
@@ -37,7 +37,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function country() { return $this->belongsTo(Country::class); }
+    public function country() 
+
+    {      
+        return $this->belongsTo(Country::class);   
+    }
+
+    public function pets() 
+
+    { 
+         return $this->hasMany(Pet::class); 
+    }
+
+ 
+    
 
 
 }

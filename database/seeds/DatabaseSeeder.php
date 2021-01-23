@@ -14,17 +14,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        $this->call([
+        
+        PetTypeSeeder::class, 
+        CountrySeeder::class, 
+        UserSeeder::class,
+        AllergySeeder::class,
+        MedicalConditionSeeder::class,
+        PetSeeder::class,
+        ImageSeeder::class,                        
+        CalendarSeeder::class,           
+        VeterinarianVisitSeeder::class,
+        VisitSeeder::class
            
-           CountrySeeder::class,
-           AllergySeeder::class,
-           UserSeeder::class,
-           MedicalConditionSeeder::class,           
-           PetTypeSeeder::class,
-           PetSeeder::class,
-           CalendarSeeder::class,           
-           VeterinarianVisitSeeder::class,
-           VisitSeeder::class,
-           ImageSeeder::class
           
                     
         ]);

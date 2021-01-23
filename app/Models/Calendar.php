@@ -19,4 +19,9 @@ class Calendar extends Model
         'bathtime_at', 
         'foodtime_at'
     ];
+
+    public function pet() 
+    { 
+        return $this->belongsTo(Pet::class);
+    }
 }

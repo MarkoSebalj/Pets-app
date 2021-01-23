@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Pet;
 
 class ImageController extends Controller
 {
@@ -25,7 +26,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view('images.create');
     }
 
     /**
@@ -36,7 +37,15 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'image_path' => 'required|unique:images|max:255',
+            'added_at' => 'required|unique:images|',
+            'Description' => 'required|unique:images|max:255',
+            'pet_id' => ' '
+            
+        ]);
+        $image = Image::create($validated);
+        return view('images.show', compact('image'));
     }
 
     /**
@@ -47,7 +56,9 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $image = Image::find($id);
+       
+        $image = Image::with(['pet'])
+            ->findOrFail($id);
         return view('images.show', compact('image'));
     }
 
@@ -59,7 +70,13 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $image = Image::findOrFail($id);
+
+        $pets = Pet::pluck('name', 'id');
+
+        return view('images.edit',
+            compact('image', 'pets')
+        );
     }
 
     /**
@@ -71,7 +88,19 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'image_path' => 'required|unique:allergies|max:255',
+            'added_at' => 'required|unique:allergies|',
+            'Description' => 'required|unique:allergies|max:255',
+            'pet_id' => ' '
+            
+        ]);
+
+        $image = Image::findOrFail($id);
+        $image->fill($validated);
+        $image->save();
+
+        return redirect()->route('images.show', ['image' => $image->id]);
     }
 
     /**
@@ -82,6 +111,10 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /* Brisanje korisnika iz baze*/
+        User::destroy($id);
+
+        /* povrat na index stranicu */
+        return redirect()->route('users.index');
     }
 }

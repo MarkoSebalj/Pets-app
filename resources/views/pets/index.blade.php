@@ -28,6 +28,7 @@
         <td>{{ $pet->gender }}</td>
         <td>{{ $pet->breed }}</td>
         <td>{{ $pet->born_at }}</td>
+        <td>{{ $pet->medical_condition->name }}</td>
         
         <td>
           <a class="btn btn-outline-dark" href="{{ route('pets.show' , ['pet' => $pet->id]) }}" role="button">Details</a>

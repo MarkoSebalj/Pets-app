@@ -16,4 +16,10 @@ class Allergy extends Model
     protected $fillable = [
         'name', 'category', 'note', 'diagnosed_at'
     ];
+
+    public function pets() 
+
+        { 
+            return $this->hasMany(Pet::class); 
+        }
 }

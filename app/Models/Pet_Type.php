@@ -16,4 +16,12 @@ class Pet_Type extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function pets() 
+
+        { 
+            return $this->hasMany(Pet::class); 
+        }
+
+    
 }

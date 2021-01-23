@@ -18,22 +18,27 @@ class Pet extends Model
     ];
 
     public function images() 
-        { 
-            return $this->hasMany(Image::class); 
-        
-        }
 
-        public function visits()
-        {
-           
-            return $this->belongsToMany(User::class, 'visits', 'pet_id', 'veterinarian_visit_id');
-        }
+    { 
+        return $this->hasMany(Image::class); 
+    }
 
-        public function medical_conditions() 
-        {
+    public function visits()
 
-            return $this->belongsTo(Medical_Condition::class); 
+    {  
+        return $this->belongsToMany(Pet::class, 'visits', 'pet_id', 'veterinarian_visit_id');
+    }
 
-        }
+    public function medical_condition()
+
+    {
+        return $this->belongsTo(Medical_Condition::class); 
+    }
+
+    public function allergy()
+
+    {
+        return $this->belongsTo(Allergy::class); 
+    }
 
 }

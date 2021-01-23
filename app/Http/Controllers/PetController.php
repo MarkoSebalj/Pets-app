@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pet; 
+use App\Models\Pet;
+use App\Models\Medical_Condition; 
 
 class PetController extends Controller
 {
@@ -27,7 +28,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return view('pets.create');
     }
 
     /**
@@ -38,7 +39,16 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:images|max:255',
+            'gender' => 'required|unique:images|',
+            'breed' => 'required|unique:images|max:255',
+            'born_at' => 'required|unique:images|',
+            'medical_condition_id' => ' '
+            
+        ]);
+        $pet = Pet::create($validated);
+        return view('pets.show', compact('pet'));
     }
 
     /**
@@ -66,7 +76,12 @@ class PetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pet = Pet::findOrFail($id);
+
+        $medical_conditions = Medical_Condition::pluck('name', 'id');
+
+        return view('pets.edit', compact('pet', 'medical_conditions')
+        );
     }
 
     /**
@@ -78,7 +93,22 @@ class PetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:images|max:255',
+            'gender' => 'required|unique:images|',
+            'breed' => 'required|unique:images|max:255',
+            'born_at' => 'required|unique:images|',
+            'medical_condition_id' => ' '
+
+            ]);
+
+        $pet = Pet::findOrFail($id);
+        $pet->fill($validated);
+        $pet->save();
+
+        return redirect()->route('pets.show', ['pet' => $pet->id]);
+
+
     }
 
     /**

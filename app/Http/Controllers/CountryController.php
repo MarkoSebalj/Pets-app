@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Country;
+use App\Models\User;
 
 class CountryController extends Controller
 {
@@ -28,7 +29,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('countries.create');
     }
 
     /**
@@ -39,7 +40,12 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:countries|max:255'
+            
+        ]);
+        $country = Country::create($validated);
+        return view('countries.show', compact('country'));
     }
 
     /**
@@ -50,7 +56,7 @@ class CountryController extends Controller
      */
     public function show($id)
     {
-        $country = Country::find($id);
+        $country = Country::findOrFail($id);
         return view('countries.show', compact('country'));
     }
 
@@ -62,7 +68,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $country = Country::findOrFail($id);
+        return view('countries.edit', compact('country'));
     }
 
     /**
@@ -74,8 +81,19 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            
+        ]);
+
+        $country = Country::findOrFail($id);
+        $country->fill($validated);
+        $country->save();
+
+        return view('countries.show', compact('country'));
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -85,6 +103,10 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        //
+         /* Brisanje korisnika iz baze*/
+         Country::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('countries.index');
     }
 }

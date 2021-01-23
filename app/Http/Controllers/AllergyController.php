@@ -25,7 +25,7 @@ class AllergyController extends Controller
      */
     public function create()
     {
-        //
+        return view('allergies.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class AllergyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:allergies|max:255',
+            'category' => 'required|unique:allergies|max:255',
+            'note' => 'required|unique:allergies|max:255',
+            'diagnosed_at' => 'required|unique:allergies|'
+            
+        ]);
+        $allergy = Allergy::create($validated);
+        return view('allergies.show', compact('allergy'));
     }
 
     /**
@@ -59,7 +67,8 @@ class AllergyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $allergy = Allergy::findOrFail($id);
+        return view('allergies.edit', compact('allergy'));
     }
 
     /**
@@ -71,7 +80,20 @@ class AllergyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'category' => 'required|max:255',
+            'note' => 'required|max:255',
+            'diagnosed_at'=> 'required'
+            
+            
+        ]);
+
+        $allergy = Allergy::findOrFail($id);
+        $allergy->fill($validated);
+        $allergy->save();
+
+        return view('allergies.show', compact('allergy'));
     }
 
     /**
@@ -82,6 +104,9 @@ class AllergyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Allergy::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('allergies.index');
     }
 }

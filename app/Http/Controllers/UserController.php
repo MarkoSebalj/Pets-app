@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Country;
 
 class UserController extends Controller
 {
@@ -16,10 +17,7 @@ class UserController extends Controller
     {
 
         $users = User::with(['country'])->paginate();
-
-        $users = User::paginate();
-
-        return view('users.index', compact('users')); 
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -29,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -40,7 +38,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|unique:users|max:255',
+            'last_name' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:255',
+            'country_id' => 'required|unique:users|',
+            
+          
+        ]);
+
+        $user = User::create($validated);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -64,7 +72,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $countries = Country::pluck('name', 'id');
+
+        return view('users.edit',
+            compact('user', 'countries')
+        );
     }
 
     /**
@@ -76,7 +90,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'country_id' => 'required',
+            
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->fill($validated);
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user->id]);
     }
 
     /**
@@ -87,6 +113,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+         /* Brisanje korisnika iz baze*/
+         User::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('users.index');
     }
 }
