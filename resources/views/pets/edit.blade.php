@@ -55,6 +55,18 @@
             {{ Form::select('medical_condition_id', $medical_conditions, $pet->medical_condition_id, ['class' => 'form-control', 'id' => 'medical_condition']) }}
         </div>
 
+        <!-- user -->
+        <div class="form-group">
+            <label for="user">User</label>
+            {{ Form::select('user_id', $users, $pet->user_id, ['class' => 'form-control', 'id' => 'user']) }}
+        </div>
+
+        <!-- pet type -->
+        <div class="form-group">
+            <label for="pet_type">Pet Type</label>
+            {{ Form::select('pet_type_id', $pet_types, $pet->pet_type_id, ['class' => 'form-control', 'id' => 'pet_type']) }}
+        </div>
+
       
         <div class="mt-4">
             <button type="submit" class="btn btn-outline-dark float-right">Save</button>
