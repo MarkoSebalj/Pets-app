@@ -127,6 +127,10 @@ class PetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /* Brisanje korisnika iz baze*/
+        User::destroy($id);
+
+        /* povrat na index stranicu */
+        return redirect()->route('pets.index');
     }
 }
