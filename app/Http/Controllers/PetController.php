@@ -85,8 +85,10 @@ class PetController extends Controller
         $pet = Pet::findOrFail($id);
 
         $medical_conditions = Medical_Condition::pluck('name', 'id');
+        $users = User::pluck('first_name', 'last_name', 'id');
+        $pet_types = Pet_Type::pluck('name', 'id');
 
-        return view('pets.edit', compact('pet', 'medical_conditions')
+        return view('pets.edit', compact('pet', 'medical_conditions', 'users', 'pet_types')
         );
     }
 
@@ -100,10 +102,10 @@ class PetController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:pets|max:255',
-            'gender' => 'required|unique:pets|',
-            'breed' => 'required|unique:pets|max:255',
-            'born_at' => 'required|unique:pets|',
+            'name' => 'required|max:255',
+            'gender' => 'required',
+            'breed' => 'required|max:255',
+            'born_at' => 'required',
             'medical_condition_id' => 'required',
             'user_id' => 'required',
             'pets_type_id' => 'required',
