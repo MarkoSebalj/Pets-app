@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\Role;
+
 
 class UserController extends Controller
 {
@@ -16,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::with(['country'])->paginate();
+        $users = User::with(['role','country'])->paginate();
         return view('users.index', compact('users'));
     }
 
@@ -41,8 +43,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|unique:users|max:255',
             'last_name' => 'required|unique:users|max:255',
-            'email' => 'required|unique:users|max:255',
-            'country_id' => 'required|unique:users|',
+            
             
           
         ]);
@@ -59,7 +60,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with(['country'])
+        $user = User::with(['role','country'])
             ->findOrFail($id);
         return view('users.show', compact('user'));
     }
@@ -74,10 +75,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        $roles = Role::pluck('name', 'id');
         $countries = Country::pluck('name', 'id');
 
         return view('users.edit',
-            compact('user', 'countries')
+            compact('user', 'roles', 'countries')
         );
     }
 
@@ -95,6 +97,7 @@ class UserController extends Controller
             'last_name' => 'required|max:255',
             'email' => 'required|max:255',
             'country_id' => 'required',
+            'role_id' => 'required'
             
         ]);
 

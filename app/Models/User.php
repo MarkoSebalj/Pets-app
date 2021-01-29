@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Enums\RoleEnum;
+
 
 class User extends Authenticatable
 {
@@ -16,7 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'country_id'
+        'name',
+        'email',
+        'password',
+        'country_id',
+        'role_id'
     ];
 
     /**
@@ -49,8 +55,17 @@ class User extends Authenticatable
          return $this->hasMany(Pet::class); 
     }
 
- 
+
+    public function role() 
+
+    {      
+        return $this->belongsTo(Role::class);   
+    }
     
+    /* authorization */
+    public function isAdmin() { return $this->role_id === RoleEnum::ADMIN; } // RoleEnum::ADMIN je 1
+    public function isUser() { return $this->role_id === RoleEnum::USER; } // RoleEnum::USER je 2
+    public function isGuest() { return $this->role_id === RoleEnum::GUEST; } // RoleEnum::GUEST je 3
 
 
 }

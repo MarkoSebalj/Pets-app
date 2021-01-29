@@ -49,38 +49,72 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('images.index') }}">Images</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+      </ul>
+      @auth
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown">
+                Welcome {{ $currentUser->first_name }}<small> ({{ $currentUser->role->name }})</small>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ route('users.show', ['user' => $currentUser->id]) }}">My profile</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+            </div>
+            </li>
+        </ul>
+        @endauth
 
-<div class="container">
+        
+    </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- @if (session('success'))
+            <div class="alert alert-success mt-5">
+                {{ session('success') }}
+            </div>
+        @endif -->
+
+        
+    </div>
+
+    <div class="container">
     @yield('content')
-</div>
+    </div>
 
-<!-- Tablica -->
+    <style>
+        /* temporarily here */
+        body { padding-bottom: 10vh; }
+        footer {
+            left: 0;
+            bottom: 0;
+            height: 8vh;
+            z-index: 100;
+        }
+    </style>
 
+    <script>
+        /* temporarily here */
+        function areYouSure(ev) {
+            if(confirm('Are you sure you?')){
+                return true;
+            }
+            ev.preventDefault();
+            return false;
+        }
+    </script>
+    <footer class="bg-light w-100 text-center position-fixed pt-3">
+        <small>Powered by <a href="https://www.google.com/search?q=zapravo prevara" target="_blank">Nije prevara d.o.o.</a></small>
+    </footer>
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
 </html>
 
-   
-  </body>
-</html>
+ 

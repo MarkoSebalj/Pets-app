@@ -15,16 +15,21 @@ class DatabaseSeeder extends Seeder
     {
        $this->call([
         
+       
+        RoleSeeder::class,
         PetTypeSeeder::class, 
         CountrySeeder::class, 
         UserSeeder::class,
         AllergySeeder::class,
         MedicalConditionSeeder::class,
-        PetSeeder::class,
-        ImageSeeder::class,                        
-        CalendarSeeder::class,           
+        PetSeeder::class,                             
+        CalendarSeeder::class,
+        ImageSeeder::class,          
         VeterinarianVisitSeeder::class,
-        VisitSeeder::class
+        VisitSeeder::class,
+        
+       
+       
            
           
                     

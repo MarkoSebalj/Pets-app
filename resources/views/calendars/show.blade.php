@@ -17,9 +17,9 @@
 
 
 <div class="btn-group" role="group">
-<a class="btn btn-secondary" href="{{ route('calendars.index') }}">Back</a>
+<a class="btn btn-outline-dark" href="{{ route('calendars.index') }}">Back</a>
 
-<a class="btn btn-primary" href="{{ route('calendars.edit', ['calendar' => $calendar]) }}">Edit</a>
+<a class="btn btn-outline-dark" href="{{ route('calendars.edit', ['calendar' => $calendar]) }}">Edit</a>
 
 <form class="form-inline" action="{{ route('calendars.destroy', ['calendar' => $calendar->id]) }}" method="POST">
     <!-- CSRF token -->

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('countries', CountryController::class);
+Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('images', ImageController::class);
 Route::resource('allergies', AllergyController::class);
@@ -26,3 +28,6 @@ Route::resource('medical_conditions', Medical_ConditionController::class);
 Route::resource('pet_types', Pet_TypeController::class);
 Route::resource('pets', PetController::class);
 Route::resource('veterinarian_visits', Veterinarian_VisitController::class);
+
+/* ovdje su rute za login, registraciju, change password, itd. */
+require __DIR__.'/auth.php';

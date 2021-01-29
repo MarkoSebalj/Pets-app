@@ -1,54 +1,34 @@
 @extends('layouts.app')
 
+@php
+$loggedInUser = \Auth::user();
+@endphp
+
 @section('content')
-<div class="mt-5 col-sm-6 mx-auto">
+
+<div class="mt-5">
+    <h1 class="text-center">{{ $user->first_name }}</h1>
+    <img src="https://picsum.photos/300" alt="profile image" class="d-block mx-auto rounded-circle">
     
-    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
+    <div class="btn-group mt-5" role="group">
+        <a class="btn btn-outline-dark" href="{{ route('users.index') }}">Back</a>
 
-        <!-- CSRF token -->
-        @csrf
-        @method('PUT')
+        <!-- admin svima mijenja password, korisnik samo sebi -->
+        @if($loggedInUser->isAdmin() || $user->id === $loggedInUser->id)
+        <a class="btn btn-outline-dark" href="{{ route('users.edit', ['user' => $user]) }}">Edit</a>
+        <a class="btn btn-outline-dark" href="{{ route('change_password.edit', ['user' => $user]) }}">Change Password</a>
+        @endif
 
-        <!-- user first name -->
-        <div class="form-group">
-            <label for="name">First Name</label>
-            <input value="{{ $user->first_name }}" name="first_name" type="text" class="form-control" id="first_name">
-            @if ($errors->has('first_name'))
-                <span class="text-danger">{{ $errors->first('first_name') }}</span>
-            @endif
-        </div>
-
-
-         <!-- user last name -->
-         <div class="form-group">
-            <label for="name">Last Name</label>
-            <input value="{{ $user->last_name }}" name="last_name" type="text" class="form-control" id="last_name">
-            @if ($errors->has('last_name'))
-                <span class="text-danger">{{ $errors->first('last_name') }}</span>
-            @endif
-        </div>
+        <!-- admin svima deaktivira račun, korisnik može samo sebi -->
+        @if($loggedInUser->isAdmin() || $user->id === $loggedInUser->id)
+        <form class="form-inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+            <!-- CSRF token -->
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="confirm('Are you sure?')" class="btn btn-danger">Deactivate</button>
+        </form>
+        @endif
+    </div>
 
 
-        <!-- email -->
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input value="{{ $user->email }}" name="email" type="text" class="form-control" id="email">
-            @if ($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
-        </div>
-
-        <!-- country -->
-        <div class="form-group">
-            <label for="country">Country</label>
-            {{ Form::select('country_id', $countries, $user->country_id, ['class' => 'form-control', 'id' => 'country']) }}
-        </div>
-
-      
-        <div class="mt-4">
-            <button type="submit" class="btn btn-outline-dark float-right">Save</button>
-            <a href="{{ route('users.index') }}" class="btn btn-link">Cancel</a>
-        </div>
-    </form>
-</div>
 @endsection

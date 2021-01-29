@@ -16,9 +16,9 @@
 
 
 <div class="btn-group" role="group">
-<a class="btn btn-secondary" href="{{ route('allergies.index') }}">Back</a>
+<a class="btn btn-outline-dark" href="{{ route('allergies.index') }}">Back</a>
 
-<a class="btn btn-primary" href="{{ route('allergies.edit', ['allergy' => $allergy]) }}">Edit</a>
+<a class="btn btn-outline-dark" href="{{ route('allergies.edit', ['allergy' => $allergy]) }}">Edit</a>
 
 <form class="form-inline" action="{{ route('allergies.destroy', ['allergy' => $allergy->id]) }}" method="POST">
     <!-- CSRF token -->

@@ -20,24 +20,28 @@ class UserSeeder extends Seeder
             'last_name' => Str::random(10),
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
+            'role_id' => rand(1,3),
             'country_id' => rand(1,4)],
 
             ['first_name' => Str::random(10),
             'last_name' => Str::random(10),
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
+            'role_id' => rand(1,3),
             'country_id' => rand(1,4)],
 
             ['first_name' => Str::random(10),
             'last_name' => Str::random(10),
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
+            'role_id' => rand(1,3),
             'country_id' => rand(1,4)],
             
             ['first_name' => Str::random(10),
             'last_name' => Str::random(10),
             'password' => Hash::make('password'),
             'email' => Str::random(10).'@gmail.com',
+            'role_id' => rand(1,3),
             'country_id' => rand(1,4)]
             
             

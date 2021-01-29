@@ -1,18 +1,33 @@
-<!-- Stored in resources/views/child.blade.php -->
-
 @extends('layouts.app')
 
+@php
+$loggedInUser = \Auth::user();
+@endphp
+
 @section('content')
-<div>
-<h3>User Detail</h3>
-<ul class="list-unstyled">
-<li>First Name: {{ $user->first_name }}</li>
-<li>Last Name: {{ $user->last_name }}</li>
-<li>Email: {{ $user->email }}</li>
-<li>Country: {{ $user->country->name }}</li>
-</ul>
 
-<a href="{{ url()->previous() }}" class="btn btn-outline-dark">Back</a>
-</div>
+<div class="mt-5">
+    <h1 class="text-center">{{ $user->first_name }}</h1>
+    <img src="https://picsum.photos/300" alt="profile image" class="d-block mx-auto rounded-circle">
+    
+    <div class="btn-group mt-5" role="group">
+        <a class="btn btn-outline-dark" href="{{ route('users.index') }}">Back</a>
+
+        <!-- admin svima mijenja password, korisnik samo sebi -->
+        @if($loggedInUser->isAdmin() || $user->id === $loggedInUser->id)
+        <a class="btn btn-outline-dark" href="{{ route('users.edit', ['user' => $user]) }}">Edit</a>
+        <a class="btn btn-outline-dark" href="{{ route('change_password.edit', ['user' => $user]) }}">Change Password</a>
+        @endif
+
+        <!-- admin svima deaktivira račun, korisnik može samo sebi -->
+        @if($loggedInUser->isAdmin() || $user->id === $loggedInUser->id)
+        <form class="form-inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+            <!-- CSRF token -->
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="confirm('Are you sure?')" class="btn btn-danger">Deactivate</button>
+        </form>
+        @endif
+    </div>
+
 @endsection
-

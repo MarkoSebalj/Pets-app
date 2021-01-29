@@ -21,9 +21,9 @@
 
 
 <div class="btn-group" role="group">
-<a class="btn btn-secondary" href="{{ route('pets.index') }}">Back</a>
+<a class="btn btn-outline-dark" href="{{ route('pets.index') }}">Back</a>
 
-<a class="btn btn-primary" href="{{ route('pets.edit', ['pet' => $pet]) }}">Edit</a>
+<a class="btn btn-outline-dark" href="{{ route('pets.edit', ['pet' => $pet]) }}">Edit</a>
 
 <form class="form-inline" action="{{ route('pets.destroy', ['pet' => $pet->id]) }}" method="POST">
 

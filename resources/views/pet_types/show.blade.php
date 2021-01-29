@@ -13,9 +13,9 @@
 
 
 <div class="btn-group" role="group">
-<a class="btn btn-secondary" href="{{ route('pet_types.index') }}">Back</a>
+<a class="btn btn-outline-dark" href="{{ route('pet_types.index') }}">Back</a>
 
-<a class="btn btn-primary" href="{{ route('pet_types.edit', ['pet_type' => $pet_type]) }}">Edit</a>
+<a class="btn btn-outline-dark" href="{{ route('pet_types.edit', ['pet_type' => $pet_type]) }}">Edit</a>
 
 <form class="form-inline" action="{{ route('pet_types.destroy', ['pet_type' => $pet_type->id]) }}" method="POST">
     <!-- CSRF token -->
