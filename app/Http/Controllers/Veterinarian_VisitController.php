@@ -25,7 +25,7 @@ class Veterinarian_VisitController extends Controller
      */
     public function create()
     {
-        //
+        return view('veterinarian_visits.create');
     }
 
     /**
@@ -36,7 +36,16 @@ class Veterinarian_VisitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|unique:veterinarian_visits|max:255',
+            'price' => 'required|unique:veterinarian_visits',
+            'note' => 'required|unique:veterinarian_visits',
+            'appointment_at' => 'required|unique:veterinarian_visits'
+            
+            
+        ]);
+        $veterinarian_visit = Veterinarian_Visit::create($validated);
+        return view('veterinarian_visits.show', compact('veterinarian_visit'));
     }
 
     /**
@@ -60,7 +69,8 @@ class Veterinarian_VisitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $veterinarian_visit = Veterinarian_Visit::findOrFail($id);
+        return view('veterinarian_visits.edit', compact('veterinarian_visit'));
     }
 
     /**
@@ -72,7 +82,17 @@ class Veterinarian_VisitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'note' => 'required',
+            'appointment_at' => 'required' ]);
+
+        $veterinarian_visit = Veterinarian_Visit::findOrFail($id);
+        $veterinarian_visit->fill($validated);
+        $veterinarian_visit->save();
+
+        return view('veterinarian_visits.show', compact('veterinarian_visit'));
     }
 
     /**
@@ -83,6 +103,9 @@ class Veterinarian_VisitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Veterinarian_Visit::destroy($id);
+
+         /* povrat na index stranicu */
+         return redirect()->route('veterinarian_visits.index');
     }
 }
